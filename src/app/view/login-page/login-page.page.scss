@@ -1,0 +1,32 @@
+
+.logo{
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    display: block;
+    justify-content: center;
+}
+
+.item-margin{
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+.button-margin{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    --border-radius: 10px;
+    --border-bottom: 10px;
+}
+
+ion-item {
+    --border-width: 3px;
+}
+
+ion-item::part(native){
+    border-radius: 10px;
+}

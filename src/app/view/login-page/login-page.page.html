@@ -1,0 +1,26 @@
+
+<ion-content>
+
+  <img class="logo" src="assets/logo.png"  alt="">
+
+  <ion-item class="item-margin"  fill="outline" mode="md">
+    <ion-label color="duoc"  position="floating">usuario</ion-label>
+    <ion-input type="text" [(ngModel)]="user"></ion-input>
+  </ion-item>
+  
+  <br>
+
+  <ion-item class="item-margin"  fill="outline" mode="md">
+    <ion-label color="duoc"  position="floating">contraseña</ion-label>
+    <ion-input  type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+    
+  <ion-button class="button-margin" color="primary" (click)="login()" expand="block"  >
+    ingresar
+  </ion-button>
+  <ion-button class="button-margin" color="dark" expand="block" href="/registro-page">
+    Restaurar 
+  </ion-button>
+
+
+</ion-content>
