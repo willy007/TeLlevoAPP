@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -7,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePagePage implements OnInit {
 
-  user:string ="Guillermo";
+  user:string = "";
 
-  constructor() { }
+  constructor(private activeroute: ActivatedRoute, private router: Router) {
+
+    this.activeroute.queryParams.subscribe(params =>{
+      if(params['user']){
+        this.user = params['user'];
+      }
+    });
+
+  }
 
   ngOnInit() {
+
   }
 
 }

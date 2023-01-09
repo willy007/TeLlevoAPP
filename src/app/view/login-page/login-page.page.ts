@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router , NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -19,12 +19,15 @@ export class LoginPagePage implements OnInit {
 
   login(){
 
-    if(this.user == "user" && this.password == "123456"){
-      this.router.navigate(["/home-page"]);
+    if(this.user.length < 1){
+      this.toastError('Usuario no valido!!');
+    }
+    else if(this.password == "123456"){
+      let data : NavigationExtras = {queryParams: {user: this.user}}
+      this.router.navigate(["/home-page"] , data);
     } else{
       this.toastError('USUARIO O CONTRASEÑA INCORRECTOS!');
     }
-
     
   }
 
