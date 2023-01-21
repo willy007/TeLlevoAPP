@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router , NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { ApiServiceService } from 'src/app/service/api-service.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,7 @@ export class LoginPagePage implements OnInit {
   user: string = "";
   password: string = "";
 
-  constructor(private toastController: ToastController, private router: Router) { }
+  constructor(private toastController: ToastController, private router: Router , private api: ApiServiceService) { }
 
   ngOnInit() {
   }
@@ -22,11 +23,14 @@ export class LoginPagePage implements OnInit {
     if(this.user.length < 1){
       this.toastError('Usuario no valido!!');
     }
-    else if(this.password == "123456"){
-      let data : NavigationExtras = {queryParams: {user: this.user}}
-      this.router.navigate(["/home-page"] , data);
-    } else{
-      this.toastError('USUARIO O CONTRASEÑA INCORRECTOS!');
+    
+      
+      //this.router.navigate(["/home-page"]);
+    else{
+      this.api.login(this.user , this.password).subscribe((data)=>{
+        console.log(data);
+      })
+      //this.toastError('USUARIO O CONTRASEÑA INCORRECTOS!');
     }
     
   }

@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'home-page',
     loadChildren: () => import('./view/home-page/home-page.module').then( m => m.HomePagePageModule)
   },
+  {
+    path: 'recuperar-pass-page',
+    loadChildren: () => import('./view/recuperar-pass-page/recuperar-pass-page.module').then( m => m.RecuperarPassPagePageModule)
+  },
+
 ];
 
 @NgModule({

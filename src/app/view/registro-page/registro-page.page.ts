@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { User } from 'src/app/interface/interface';
+import { ApiServiceService } from 'src/app/service/api-service.service';
 
 @Component({
   selector: 'app-registro-page',
@@ -9,27 +11,41 @@ import { ToastController } from '@ionic/angular';
 })
 export class RegistroPagePage implements OnInit {
 
-  user: string = "";
-  password: string = "";
-  repassword: string = "";
+  user: User = {
+    rut: "",
+    nombre: "",
+    apellidos: "",
+    correo: "",
+    password: "",
+    tipo_usuario: ""
+  }
 
-  constructor(private toastController: ToastController, private router: Router) { }
+
+  constructor(private toastController: ToastController, private router: Router, private api:ApiServiceService) { }
 
   ngOnInit() {
   }
 
-  Restaurar(){
-    if(this.user != "user"){
-      this.toastError("El usuario no existe")
-      return;
-    }else if(this.password != this.repassword){
-      this.toastError("Las contraseñas no so identicas")
-    }else if(this.password.length < 6 ){
-      this.toastError("Contraseña debe ser mayor a 6 caracteres")
-    }else{
-      this.router.navigate(["/login-page"])
-      this.toastPrimary("contraseña Cambiada correctamente")
+  registro(){
+    if (
+    this.user.tipo_usuario === "" ||
+    this.user.rut === "" ||
+    this.user.nombre === "" ||
+    this.user.apellidos === ""||
+    this.user.correo === "" ||
+    this.user.password === ""){
+      this.toastError("Campos vacios.. Verifique los campos");
+      return
     }
+    this.api.registro(this.user).subscribe((data) => {
+      if (data.result === "usuario creado"){
+        this.router.navigate(["/login-page"]);
+        this.toastPrimary(data.result);
+      }else {
+        this.toastError("error al crear Usuario");
+        console.log(data);
+      }
+    });
 
   }
 

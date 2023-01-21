@@ -1,30 +1,58 @@
 <ion-content>
 
-
-
   <h4 class="ion-text-center txt">Restaurar Cuenta</h4>
 
+  <ion-item class="item-margin"  fill="outline" mode="md">
+    <ion-label color="duoc"  position="floating">rut</ion-label>
+    <ion-input type="text" [(ngModel)]="user.rut"></ion-input>
+  </ion-item>
+  
+  <br>
 
   <ion-item class="item-margin"  fill="outline" mode="md">
-    <ion-label color="duoc"  position="floating">usuario</ion-label>
-    <ion-input type="text" [(ngModel)]="user"></ion-input>
+    <ion-label color="duoc"  position="floating">correo</ion-label>
+    <ion-input type="text" [(ngModel)]="user.correo"></ion-input>
+  </ion-item>
+  
+  <br>
+
+  <ion-item class="item-margin"  fill="outline" mode="md">
+    <ion-label color="duoc"  position="floating">nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="user.nombre"></ion-input>
+  </ion-item>
+  
+  <br>
+
+  <ion-item class="item-margin"  fill="outline" mode="md">
+    <ion-label color="duoc"  position="floating">apellido</ion-label>
+    <ion-input type="text" [(ngModel)]="user.apellidos"></ion-input>
   </ion-item>
   
   <br>
 
   <ion-item class="item-margin"  fill="outline" mode="md">
     <ion-label color="duoc"  position="floating">contraseña</ion-label>
-    <ion-input  type="password" [(ngModel)]="password"></ion-input>
+    <ion-input  type="password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
 
   <br>
 
+
+  <ion-item  class="item-margin"  fill="outline" mode="md">
+    <ion-label>Tipo de usuario</ion-label>
+    <ion-select [(ngModel)]="user.tipo_usuario" placeholder="Selecione tipo" okText="Agregar" cancelText="Cancelar">
+      <ion-select-option value="conductor">Conductor</ion-select-option>
+      <ion-select-option value="pasajero">Pasajero</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!--
   <ion-item class="item-margin"  fill="outline" mode="md">
     <ion-label color="duoc"  position="floating">Repetir contraseña</ion-label>
     <ion-input  type="password" [(ngModel)]="repassword"></ion-input>
   </ion-item>
-
-  <ion-button class="button-margin" color="primary" (click)="Restaurar()" expand="block"  >
+  -->
+  <ion-button class="button-margin" color="primary" (click)="registro()" expand="block"  >
     Restaurar
   </ion-button>
   <ion-button class="button-margin" color="dark" expand="block" href="/login-page">
