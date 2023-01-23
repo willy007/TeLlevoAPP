@@ -28,7 +28,6 @@ export class LoginPagePage implements OnInit {
       this.isLoading = false;
     }else{
       this.api.login(this.user , this.password).subscribe((data)=>{
-        console.log(data);
         if(data.result === "Login correcto"){
           window.localStorage.setItem("id_usuario",data.id_usuario );
           this.router.navigate(["/home-page"]);

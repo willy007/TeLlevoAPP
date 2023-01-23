@@ -11,6 +11,7 @@ import { ApiServiceService } from 'src/app/service/api-service.service';
 })
 export class RegistroPagePage implements OnInit {
 
+  isLoading = false;
   user: User = {
     rut: "",
     nombre: "",
@@ -37,14 +38,15 @@ export class RegistroPagePage implements OnInit {
       this.toastError("Campos vacios.. Verifique los campos");
       return
     }
+    this.isLoading = true;
     this.api.registro(this.user).subscribe((data) => {
       if (data.result === "usuario creado"){
         this.router.navigate(["/login-page"]);
         this.toastPrimary(data.result);
       }else {
         this.toastError("error al crear Usuario");
-        console.log(data);
       }
+      this.isLoading = false;
     });
 
   }

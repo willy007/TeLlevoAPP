@@ -1,6 +1,8 @@
 <ion-content>
 
-  <h4 class="ion-text-center txt">Restaurar Cuenta</h4>
+  <ion-progress-bar *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
+
+  <h4 class="ion-text-center txt">Cerar Cuenta</h4>
 
   <ion-item class="item-margin"  fill="outline" mode="md">
     <ion-label color="duoc"  position="floating">rut</ion-label>
@@ -46,14 +48,9 @@
     </ion-select>
   </ion-item>
 
-  <!--
-  <ion-item class="item-margin"  fill="outline" mode="md">
-    <ion-label color="duoc"  position="floating">Repetir contraseña</ion-label>
-    <ion-input  type="password" [(ngModel)]="repassword"></ion-input>
-  </ion-item>
-  -->
+
   <ion-button class="button-margin" color="primary" (click)="registro()" expand="block"  >
-    Restaurar
+    Registrar
   </ion-button>
   <ion-button class="button-margin" color="dark" expand="block" href="/login-page">
     Login

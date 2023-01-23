@@ -22,9 +22,7 @@ export class HomePagePage implements OnInit ,AfterViewInit {
 
   ngAfterViewInit(){
     let idUser = window.localStorage.getItem("id_usuario");
-    console.log(idUser);
     this.api.infoUser(idUser + "" ).subscribe((data)=>{
-      console.log(data);
       if(data.result != "No hay ningun usuario creado"){
         const user: User = data.result;
         this.user = user;

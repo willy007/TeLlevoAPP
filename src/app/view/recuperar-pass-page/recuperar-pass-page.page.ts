@@ -10,8 +10,8 @@ import { ApiServiceService } from 'src/app/service/api-service.service';
 })
 export class RecuperarPassPagePage implements OnInit {
 
-
   mail: string = "";
+  isLoading = false;
 
   constructor(private toastController: ToastController, private router: Router , private api: ApiServiceService) { }
 
@@ -23,6 +23,7 @@ export class RecuperarPassPagePage implements OnInit {
       this.toastError("Correo no valido");
       return;
     }else {
+      this.isLoading = true;
       this.api.recuperarPass(this.mail).subscribe((data)=>{
         if(data.result == "password modificada correctamente"){
           this.router.navigate(["/login-page"]);
@@ -30,7 +31,7 @@ export class RecuperarPassPagePage implements OnInit {
         }else{
           this.toastError("El Correo no existe");
         }
-        console.log(data);
+        this.isLoading = false;
       })
     }
 
