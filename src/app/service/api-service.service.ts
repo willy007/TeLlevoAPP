@@ -39,8 +39,8 @@ export class ApiServiceService {
     return this.http.get(this.URL+ "obtenerUsuarios/" + this.TOKEN).pipe(retry(3))
   }
 
-  infoUser(id : string){ 
-    return this.http.get(this.URL+ "obtenerUsuarios/"+ id+ "/"+ this.TOKEN).pipe(retry(3))
+  infoUser(id : string):Observable<any>{ 
+    return this.http.get(this.URL+ "obtenerUsuario/"+ id + "/" + this.TOKEN).pipe()
   }
 
 }

@@ -12,6 +12,7 @@ export class LoginPagePage implements OnInit {
 
   user: string = "";
   password: string = "";
+  isLoading = false;
 
   constructor(private toastController: ToastController, private router: Router , private api: ApiServiceService) { }
 
@@ -20,22 +21,27 @@ export class LoginPagePage implements OnInit {
 
   login(){
 
+    this.isLoading = true;
+
     if(this.user.length < 1){
       this.toastError('Usuario no valido!!');
-    }
-    
-      
-      //this.router.navigate(["/home-page"]);
-    else{
+      this.isLoading = false;
+    }else{
       this.api.login(this.user , this.password).subscribe((data)=>{
         console.log(data);
-      })
-      //this.toastError('USUARIO O CONTRASEÑA INCORRECTOS!');
+        if(data.result === "Login correcto"){
+          window.localStorage.setItem("id_usuario",data.id_usuario );
+          this.router.navigate(["/home-page"]);
+          this.isLoading = false;
+        }else{
+          this.toastError('USUARIO O CONTRASEÑA INCORRECTOS!');
+          this.isLoading = false;
+        }
+      });
     }
-    
   }
 
-  async toastError(msg: string) {
+  async toastError(msg: string){
     const toast = await this.toastController.create({
       message: msg,
       duration: 3000,
