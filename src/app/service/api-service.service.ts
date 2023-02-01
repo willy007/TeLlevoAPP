@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable, pipe, retry } from 'rxjs';
-import { User } from '../interface/interface';
+import { User , Viaje } from '../interface/interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,11 @@ export class ApiServiceService {
 
   infoUser(id : string):Observable<any>{ 
     return this.http.get(this.URL+ "obtenerUsuario/"+ id + "/" + this.TOKEN).pipe()
+  }
+
+  crearVaje(data : Viaje):Observable<any>{
+    data.token = this.TOKEN;
+    return this.http.post(this.URL+"crearViaje" , data).pipe()
   }
 
 }

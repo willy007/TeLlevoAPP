@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Bienvenido {{user?.nombre! }}</ion-title>
+    <ion-title>Bienvenido {{user?.nombre }}</ion-title>
 
     <ion-buttons slot="end">
       <ion-button (click)="btnHome()">
@@ -13,25 +13,47 @@
 
 <ion-content>
 
-  <div class="container">
+  <div id="map">
 
-    <ion-text>
-      <h3>nombre: {{user?.nombre!}}</h3>
-    </ion-text>
-    <ion-text>
-      <h3>apellidos: {{user?.apellidos!}}</h3>
-    </ion-text>
-    <ion-text>
-      <h3>rut: {{user?.rut!}}</h3>
-    </ion-text>
-    <ion-text>
-      <h3>correo: {{user?.correo!}}</h3>
-    </ion-text>
+    <ion-card mode="md" >
+      <ion-card-header class="heder-card">
+        <ion-card-title >
+          <div>
+          Donde Vamos?
+            
+            <ion-button (click)="hidden()" id="btnMenu" fill="clear" size="small" >
+             <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
 
-    <ion-text>
-      <h3>tipo: {{user?.tipo_usuario!}}</h3>
-    </ion-text>
+          </div>
+        </ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content [ngClass]="{'hidden': !menu, '': menu}">
+
+        <ion-item class="item-margin" shape="round" fill="outline" mode="md">
+          <ion-label color="duoc"  position="floating">Descripcion</ion-label>
+          <ion-input type="text" [(ngModel)]="data.destino" ></ion-input>
+        </ion-item>
+        <br>
+        <ion-item class="item-margin" shape="round" fill="outline" mode="md">
+          <ion-label color="duoc"  position="floating">Capacidad</ion-label>
+          <ion-input type="number" [(ngModel)]="data.pasajeros"  ></ion-input>
+        </ion-item>
+        <br>
+        <ion-item class="item-margin" shape="round" fill="outline" mode="md">
+          <ion-label color="duoc"  position="floating">Monto</ion-label>
+          <ion-input type="number" [(ngModel)]="data.monto" ></ion-input>
+        </ion-item>
+        <br>
+        <ion-button (click)="viajar()" expand="block" fill="outline" shape="round">
+          Viajar
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
 
   </div>
+  
+  
 
 </ion-content>

@@ -27,7 +27,15 @@ const routes: Routes = [
   {
     path: 'home-page',
     loadChildren: () => import('./view/home-page/home-page.module').then( m => m.HomePagePageModule)
+  },  {
+    path: 'pasajero',
+    loadChildren: () => import('./view/pasajero/pasajero.module').then( m => m.PasajeroPageModule)
   },
+  {
+    path: 'conducto',
+    loadChildren: () => import('./view/conducto/conducto.module').then( m => m.ConductoPageModule)
+  },
+
   
 ];
 

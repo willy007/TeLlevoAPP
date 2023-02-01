@@ -30,7 +30,15 @@ export class LoginPagePage implements OnInit {
       this.api.login(this.user , this.password).subscribe((data)=>{
         if(data.result === "Login correcto"){
           window.localStorage.setItem("id_usuario",data.id_usuario );
-          this.router.navigate(["/home-page"]);
+          this.api.infoUser(data.id_usuario).subscribe((data)=>{
+            if(data.result.tipo_usuario == "conductor"){
+               this.router.navigate(["/home-page"]);
+            }else if(data.result.tipo_usuario == "pasajero"){
+              this.router.navigate(["/pasajero"]);
+            }
+            this.isLoading = false;
+          })
+         
           this.isLoading = false;
         }else{
           this.toastError('USUARIO O CONTRASEÑA INCORRECTOS!');
