@@ -18,6 +18,8 @@ export class AuthGuardGuard implements CanActivate {
     }
 
   private async checkAuth() {
+
+    /*
     let id = window.localStorage.getItem("id_usuario");
     if (id === null){
       return true
@@ -25,6 +27,9 @@ export class AuthGuardGuard implements CanActivate {
       this.router.navigate(['/home-page']);
       return false
     }
+    */
+   
+    return true;
     
   }
   

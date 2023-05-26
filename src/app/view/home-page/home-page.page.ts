@@ -76,10 +76,9 @@ export class HomePagePage implements OnInit ,AfterViewInit {
 
   async mapInit(){
 
-    const ubicacion =  await Geolocation.getCurrentPosition();
-    this.marker = [ubicacion.coords.longitude,ubicacion.coords.latitude];
+    this.marker = [-70.57906424840523,-33.59857497310967 ];
     this.data.marker = this.marker;
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VpbGxlMDA3IiwiYSI6ImNsZGR2bW92YjAybGYzb294enp1eGMzY2MifQ.R9Cn1NMDbD3pYS2WLWNKhw';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VpbGxlMDA3IiwiYSI6ImNsaTRvMjV0dTAwdTUzcnI0aGk0N3doMGIifQ.1H2-dw5WqRrTmrqp0PH2vA';
     const map = new mapboxgl.Map({
       container: 'map', // Specify the container ID
       style: 'mapbox://styles/mapbox/streets-v12', // Specify which map style to use
@@ -95,12 +94,14 @@ export class HomePagePage implements OnInit ,AfterViewInit {
     .setLngLat(this.marker)
     .addTo(map);
     
-    const marker = new mapboxgl.Marker({color:'black' ,draggable: true })
+    const marker = new mapboxgl.Marker({color:'red' ,draggable: true })
       .setLngLat(this.marker)
       .addTo(map);
 
     marker.on('dragend', ()=>{
       const markData =  marker.getLngLat();
+
+      // -33.59857497310967, -70.57906424840523
       this.data.markerlog = markData.lng ;
       this.data.markerlat = markData.lat;
     });
